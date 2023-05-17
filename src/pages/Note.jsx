@@ -1,16 +1,20 @@
-import { useParams } from 'react-router-dom'
+import { Icon } from '@/features/ui'
+import styles from './Note.module.css'
 
-const Note = ({ notes }) => {
-  const id = useParams().id
-  const note = notes.find((n) => n.id === Number(id))
+const Note = ({ note }) => {
   return (
-    <div>
-      <h2>{note.content}</h2>
+    <article>
+      <h2 className={styles.content}>
+        {note.important ? (
+          <Icon name="star_rate" />
+        ) : (
+          <Icon name="star_border" />
+        )}
+        {note.content}
+      </h2>
       <div>{note.user}</div>
-      <div>
-        <strong>{note.important ? 'important' : ''}</strong>
-      </div>
-    </div>
+      <div></div>
+    </article>
   )
 }
 
